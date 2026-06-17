@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mua TikTok Coin</title>
+
+  <!-- Font & Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero-banner">
+    <div class="container">
+      <img src="assets/banner.png" alt="TikTok Coin Banner" class="banner-img" />
+    </div>
+  </header>
+</header>
+
+  <main class="container main">
+    <section id="packages" class="packages">
+      <h2>Gói coin có sẵn</h2>
+      <div id="package-list" class="package-list"></div>
+    </section>
+
+    <section id="custom" class="custom">
+      <h2>Mua coin tùy chỉnh</h2>
+      <div class="custom-box">
+        <input id="customCoin" type="number" placeholder="Nhập số coin..." min="0" />
+        <button id="calcBtn">Tính giá</button>
+      </div>
+      <p id="customResult" class="custom-result"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <!-- Cột trái: Admin info -->
+      <div class="footer-section admin-info">
+        <div class="avatar-wrapper">
+          <img src="assets/admin-avatar.png" alt="Admin Avatar" class="avatar-circle" />
+        </div>
+        <div class="footer-content">
+          <h3>Liên hệ Admin</h3>
+          <p><strong>Admin:</strong> Vũ Duy Linh</p>
+          <p>Momo / Zalo: <a href="tel:0383341246">0383341246</a></p>
+          <p>Facebook: <a href="https://www.facebook.com/buzzbuzz149" target="_blank">Liên hệ qua Facebook</a></p>
+        </div>
+      </div>
+
+      <!-- Cột phải: Banking info -->
+      <div class="footer-section banking-info">
+        <div class="qr-wrapper">
+          <img src="assets/qr.png" alt="Mã QR" class="qr-square" />
+        </div>
+        <div class="footer-content">
+          <h3>Thông tin chuyển khoản</h3>
+          <p><strong class="highlight">VPBank:</strong> <span class="bank-account" data-account="0026S210971">0026S210971</span></p>
+          <p><strong>Vietcombank:</strong> <span class="bank-account" data-account="9419991996">9419991996</span></p>
+          <p>Chủ TK: <strong>Vũ Duy Linh</strong></p>
+          <p>Mã QR: <em>(quét để chuyển nhanh)</em></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.querySelectorAll(".bank-account").forEach(el => {
+      el.addEventListener("click", () => {
+        const account = el.dataset.account;
+        navigator.clipboard.writeText(account).then(() => {
+          showToast(`Đã sao chép: ${account}`);
+        });
+      });
+    });
+
+    function showToast(msg) {
+      let toast = document.querySelector(".copy-toast");
+      if (!toast) {
+        toast = document.createElement("div");
+        toast.className = "copy-toast";
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+  </script>
+</body>
+</html>
